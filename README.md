@@ -1,5 +1,5 @@
 # convex-hull
-Graham Scan Convex Hull Algortihm
+Graham Scan Convex Hull Algorithm
 
 ## References:
 
