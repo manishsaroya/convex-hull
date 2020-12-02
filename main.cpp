@@ -14,15 +14,6 @@ struct Point {
   int x, y;
 };
 
-int get_direction(const Point &p1, const Point &p2, const Point &p3) {
-  //   returns
-  //   greater than zero : counter clock-wise direction
-  //   less than zero : clock-wise direction
-  //   equal to zero : collinear
-  return (p2.x - p1.x) * (p3.y - p1.y) -
-         (p2.y - p1.y) * (p3.x - p1.x); // using cross product
-}
-
 struct Compare {
   Point p1;
   Compare(Point p) {
@@ -35,7 +26,7 @@ struct Compare {
         (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
 
     if (cross_product == 0) {
-    // consider distances to order p2 and p3 when polar angles are same
+      // consider distances to order p2 and p3 when polar angles are same
       int dist2 = (p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y);
       int dist3 = (p3.x - p1.x) * (p3.x - p1.x) + (p3.y - p1.y) * (p3.y - p1.y);
       return dist2 < dist3;
@@ -43,6 +34,15 @@ struct Compare {
     return cross_product > 0;
   }
 };
+
+int get_direction(const Point &p1, const Point &p2, const Point &p3) {
+  //   returns
+  //   greater than zero : counter clock-wise direction
+  //   less than zero : clock-wise direction
+  //   equal to zero : collinear
+  return (p2.x - p1.x) * (p3.y - p1.y) -
+         (p2.y - p1.y) * (p3.x - p1.x); // using cross product
+}
 
 Point get_next_to_top(std::stack<Point> &local_stack) {
   Point top = local_stack.top();
